@@ -1,8 +1,9 @@
 const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
-const testing = require(path.join(__dirname, '..', 'contact-book', 'models', 'testing.js'))
-const User = require('.\\models\\User')
+const testing = require(path.join(__dirname, '..', 'contact-book', 'models', 'testing'))
+const User = require(path.join(__dirname, '..', 'contact-book', 'models', 'User'))
+// const User = require('.\\models\\User')
 
 const portnum = process.env.PORT || 3000
 
