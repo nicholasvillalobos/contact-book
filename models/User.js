@@ -8,4 +8,12 @@ const User = new Schema({
   password: String
 })
 
+UserSchema.methods.generateHash = function(password) {
+	return bcrypt.hashSynch(password, bcrypt.genSaltSync(8), null);
+}
+
+UserSchema.methods.validPassword = function(password) {
+	return bcrypt.compareSync(password, this.password);
+}
+
 module.exports = mongoose.model('User', User)
