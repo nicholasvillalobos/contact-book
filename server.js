@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 const mongoose = require('mongoose')
-mongoose.connect('mongodb+srv://nicholasvillalobos:%23Xboxcrazy30@cluster0-wdkku.mongodb.net/test?retryWrites=true', { useNewUrlParser: true})
+mongoose.connect('mongodb+srv://nicholasvillalobos:<password>@cluster0-wdkku.mongodb.net/test?retryWrites=true', { useNewUrlParser: true})
 const db = mongoose.connection
 db.on('error', error => console.error('db failed to open'))
 db.once('open', () => console.log('db opened successfully'))
