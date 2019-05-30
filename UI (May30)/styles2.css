@@ -1,0 +1,89 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    
+    background: url(backk.jpg);
+    background-size: cover;
+    background-position: center;
+    
+    font-family: inherit;   
+}
+
+h1
+{
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 24px;
+    font-family: 
+}
+
+.signupbox p
+{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+
+}
+
+
+.signupbox
+{
+    width: 320px;
+    height: 380px;
+    background: linear-gradient(black, #414345);
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-shadow: 6px 13px 8px #444C54;
+    border: 1px solid black;
+    -webkit-border-radius: 12px;
+    padding: 30px 40px;
+}
+
+.signupbox input
+{
+    width: 100%;
+    margin-bottom: 20px; 
+}
+
+.signupbox input[type="submit"]
+{
+    width: 35%;
+    margin-bottom: 20px;
+    margin-left: 115px;
+}
+
+.signupbox input[type="text"], input[type="password"]
+{
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: #fff;
+    font-size: 12px;
+}
+
+.signupbox input[type = "submit"]
+{
+    border: none;
+    outline: none;
+    height: 30px;
+    background: white;
+    color: black;
+    box-shadow:2px 3px 11px #CED5D9;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    
+}
+
+.signupbox input[type="submit"]:hover
+{
+    animation-fill-mode: forwards;
+    background: #CED5D9;
+}
