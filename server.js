@@ -196,31 +196,22 @@ app.get('/users/contacts/:id', (req, res, next) => {
   })
 
 app.post('/users/contacts', (req, res, next) => {
-  const { body } = req;
-  const {
-    firstname,
-    lastname,
-    phone,
-    owner
-  } = body;
-  let{
-    email
-  } = body;
-
-  const newContact = new Contact();
-  newContact.firstname = firstname;
-  newContact.email = email;
-  newContact.lastname = lastname;
-  newContact.phone = phone;
-  newContact.owner = owner;
-  newContact.save((err, user) => {
+  Contact.create({
+    owner: req.body.owner,
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    email: req.body.email,
+    phone: req.body.phone
+  }, (err, user) => {
     if (err) return res.status(500).send("error making user");
-    return res.send({
-      success: true,
-      message: 'New Contact!'
-    });
-    })
-  })
+      return res.send({
+        success: true,
+        message: 'New Contact!'
+      });
+  });
+})
+
+//app.put('/')
 
 app.get('/users/contacts', (req, res, next) => {
   Contact.find({}, (err, contacts) => {

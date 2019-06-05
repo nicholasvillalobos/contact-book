@@ -24,7 +24,10 @@ const User = new Schema({
     type: Boolean,
     default: false
   },
-  contacts: [{type: Schema.Types.ObjectId, ref: 'Contacts'}]  
+  contacts: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Contact'
+  }]  
 })
 
 User.methods.generateHash = function(password) {
