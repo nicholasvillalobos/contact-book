@@ -1,8 +1,8 @@
-##legend:
-###priority (1-5)
+### legend:
+priority (1-5)
 
 
-TODO:
+### TODO:
 * ~~(1) sign in~~
 * ~~(1) sign up~~
 * ~~(1) view contact~~
