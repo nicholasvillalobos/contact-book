@@ -10,7 +10,7 @@ TODO:
 * (1) set up database
 * (1) set up server
 * (1) link to database
-  > test with ARC
+  * test with ARC
 * (1) password hashing and salting
 * (2) contact lookup style
 * (3) logout button
