@@ -1,21 +1,19 @@
 legend:
-* imperative
-^ almost imperative
-# not imperative
-o flashy addition
+priority (1-5)
+
 
 TODO:
-* sign in                         done
-* sign up                         done
-* view contact                    done
-* add contact                     done
-* set up database                 done
-* set up server                   done
-* link to database
-  -> test with ARC
-* password hashing and salting
-^ contact lookup style
-# logout button
-o "forgot password?"
-o email authentication
-o https - ssl certification
+* (1) sign in
+* (1)  sign up
+* (1) view contact
+* (1) add contact
+* (1) set up database
+* (1) set up server
+* (1) link to database
+  > test with ARC
+* (1) password hashing and salting
+* (2) contact lookup style
+* (3) logout button
+* (5) "forgot password?"
+* (5) email authentication
+* (5) https - ssl certification
