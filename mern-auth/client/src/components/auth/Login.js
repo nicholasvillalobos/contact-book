@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import classnames from "classnames";
 class Login extends Component {
-  // The constructor method is a special method for creating and initializing an object created 
+  // The constructor method is a special method for creating and initializing an object created
   constructor() {
     super();
     this.state = {

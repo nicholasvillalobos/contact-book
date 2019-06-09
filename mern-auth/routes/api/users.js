@@ -129,6 +129,21 @@ router.get('/', (req, res, next) => {
   })
 })
 
+// add contact for the user then search
+/*export const addContact = (userData, history) => dispatch => {
+  axios
+    .post("/api/users/contacts", userData)
+    .then(res => history.push("/contacts/:id"))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    )
+};
+*/
+
+
 router.get('/contacts/:id', (req, res, next) => {
   Contact.find({owner: req.params.id}, (err, contacts) => {
     if (err) return res.status(500).send("Error getting Contacts")

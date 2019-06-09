@@ -56,7 +56,7 @@ class Dashboard extends Component {
 
 
         // send through axios here
-                
+
         this.state ({
             name: '',
             email: '',
@@ -65,7 +65,7 @@ class Dashboard extends Component {
         })
     }
 render() {
-    const { user } = this.props.auth;
+  //  const { user } = this.props.auth;bi j
 return (
 
 
@@ -74,7 +74,7 @@ return (
                   <h3>Add New Contact</h3>
                   <form onSubmit={this.onSubmit}>
                       <div className="form-group">
-                          <label>Email</label>
+                          <label>Name</label>
                           <input  type="text"
                                   className="form-control"
                                   value={this.state.todo_description}
@@ -82,51 +82,23 @@ return (
                                   />
                       </div>
                       <div className="form-group">
+                          <label>Email</label>
+                          <input  type="text"
+                                  className="form-control"
+                                //  value={this.state.todo_responsible}
+                                //  onChange={this.onChangeTodoResponsible}
+                                  />
+                      </div>
+
+                      <div className="form-group">
                           <label>Phone Number</label>
                           <input  type="text"
                                   className="form-control"
-                                  value={this.state.todo_responsible}
-                                  onChange={this.onChangeTodoResponsible}
+                                //  value={this.state.todo_responsible}
+                                //  onChange={this.onChangeTodoResponsible}
                                   />
                       </div>
-                      <div className="form-group">
-                          <div className="form-check form-check-inline">
-                              <input  className="form-check-input"
-                                      type="radio"
-                                      name="priorityOptions"
-                                      id="priorityLow"
-                                      value="Low"
-                                      checked={this.state.todo_priority==='Low'}
-                                      onChange={this.onChangeTodoPriority}
-                                      />
-                              <label className="form-check-label">Low</label>
-                          </div>
-                          <div className="form-check form-check-inline">
-                              <input  className="form-check-input"
-                                      type="radio"
-                                      name="priorityOptions"
-                                      id="priorityMedium"
-                                      value="Medium"
-                                      checked={this.state.todo_priority==='Medium'}
-                                      onChange={this.onChangeTodoPriority}
-                                      />
-                              <label className="form-check-label">Medium</label>
-                          </div>
-                          <div className="form-check form-check-inline">
-                              <input  className="form-check-input"
-                                      type="radio"
-                                      name="priorityOptions"
-                                      id="priorityHigh"
-                                      value="High"
-                                      checked={this.state.todo_priority==='High'}
-                                      onChange={this.onChangeTodoPriority}
-                                      />
-                              <label className="form-check-label">High</label>
-                          </div>
-                      </div>
-                      <div className="form-group">
-                          <input type="submit" value="Delete" className="btn btn-primary" />
-                      </div>
+
                   </form>
 
 
