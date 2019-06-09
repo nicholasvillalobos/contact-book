@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import axios from "axios";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 
@@ -10,6 +11,26 @@ class Dashboard extends Component {
 
 
   };
+
+  dopeFunction = () => {
+    console.log("big titty bitches");
+  }
+
+  addContact = () => {
+    const data = {
+      name: "dick",
+      email: "penis@dick.com",
+      phone: "1234567890",
+      owner: "5cf5cfca7c69529e049fe4c8"
+    }
+
+    axios
+      .post("/api/users/contacts", data)
+      .then(res => console.log(res, localStorage.jwtToken))
+      .catch(err =>
+        console.log("error")
+      );
+  }
 
   constructor(props) {
         super(props);
@@ -68,8 +89,6 @@ render() {
   //  const { user } = this.props.auth;bi j
 return (
 
-
-
             <div style={{marginTop: 20}}>
                   <h3>Add New Contact</h3>
                   <form onSubmit={this.onSubmit}>
@@ -101,6 +120,18 @@ return (
 
                   </form>
 
+                  <button
+                    style={{
+                      width: "150px",
+                      borderRadius: "3px",
+                      letterSpacing: "1.5px",
+                      marginTop: "1rem"
+                    }}
+                    onClick={this.addContact}
+                    className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                  >
+                    Add Contact
+                  </button>
 
 
             <button
