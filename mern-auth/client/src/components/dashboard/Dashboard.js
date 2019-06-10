@@ -1,33 +1,99 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { RadioGroup, RadioButton } from 'react-radio-buttons';
+import SearchField from "react-search-field";
 import axios from "axios";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 
 class Dashboard extends Component {
+  // runs when page loads
+  componentDidMount = () => {
+    this.getContacts();
+    console.log("midgets and spoons");
+  }
+
+  getContacts = () => {
+    axios
+      .get("/api/users/contacts/" + localStorage.userId)
+      .then(res => {
+        this.setState((state, props) => {
+          const tmp = res.data.length > 0 ? res.data[0]._id : null
+          return { shownContacts: res.data, contacts: res.data, toDelete: tmp };
+        });
+      }).catch(err => {
+        console.log("lord have mercy");
+      });
+
+      // // update the shownContacts
+      // this.setState((state, props) => {
+      //   return { shownContacts: this.state.contacts };
+      // });
+  }
+
+  checkLocalStorage = () => {
+    console.log(localStorage);
+  }
+
+  checkState = () => {
+    console.log(this.state.contacts)
+  }
+
   onLogoutClick = e => {
     e.preventDefault();
     this.props.logoutUser();
-
-
   };
 
   dopeFunction = () => {
     console.log("big titty bitches");
   }
 
+  deleteContact = () => {
+    axios.delete('/api/users/contacts/' + this.state.toDelete)
+      .then((res) => {
+        console.log("deleted!");
+        // clear search bar here!
+        this.getContacts();
+        console.log(this.state.toDelete);
+      }).catch(() => {
+        console.log("delete failed");
+      })
+    }
+
+  radioChange = (contactId) => {
+    console.log("radio button change");
+    this.setState((state, props) => {
+      return { toDelete: contactId };
+    });
+  }
+
+  searchChange = (str) => {
+    if (str == '') {
+      this.setState((state, props) => {
+        return { shownContacts: this.state.contacts };
+      });
+      return;
+    }
+    const tmp = this.state.shownContacts.filter(contact => contact.name.includes(str));
+    this.setState((state, props) => {
+      return { shownContacts: tmp };
+    });
+  }
+
   addContact = () => {
     const data = {
-      name: "dick",
-      email: "penis@dick.com",
-      phone: "1234567890",
-      owner: "5cf5cfca7c69529e049fe4c8"
+      name: document.getElementById("name").value,
+      email: document.getElementById("email").value,
+      phone: document.getElementById("phone").value,
+      owner: localStorage.userId
     }
 
     axios
       .post("/api/users/contacts", data)
-      .then(res => console.log(res, localStorage.jwtToken))
-      .catch(err =>
+      .then(res => {
+        // clear search bar here!
+        this.getContacts();
+      }).catch(err =>
         console.log("error")
       );
   }
@@ -44,7 +110,10 @@ class Dashboard extends Component {
             name: '',
             email: '',
             phone: '',
-            deleted: false
+            deleted: false,
+            toDelete: '',
+            shownContacts: [],
+            contacts: []
         }
     }
 
@@ -75,9 +144,6 @@ class Dashboard extends Component {
         console.log(`Todo Priority: ${this.state.todo_priority}`);
         console.log(`Todo Completed: ${this.state.todo_completed}`);
 
-
-        // send through axios here
-
         this.state ({
             name: '',
             email: '',
@@ -85,73 +151,102 @@ class Dashboard extends Component {
             deleted: false
         })
     }
-render() {
-  //  const { user } = this.props.auth;bi j
-return (
 
-            <div style={{marginTop: 20}}>
-                  <h3>Add New Contact</h3>
-                  <form onSubmit={this.onSubmit}>
-                      <div className="form-group">
-                          <label>Name</label>
-                          <input  type="text"
-                                  className="form-control"
-                                  value={this.state.todo_description}
-                                  onChange={this.onChangeTodoDescription}
-                                  />
-                      </div>
-                      <div className="form-group">
-                          <label>Email</label>
-                          <input  type="text"
-                                  className="form-control"
-                                //  value={this.state.todo_responsible}
-                                //  onChange={this.onChangeTodoResponsible}
-                                  />
-                      </div>
+    renderContactItem = (data) => {
+      return (
+        <RadioButton value={this.state.toDelete} key={data._id}>
+          <div onClick={() => this.radioChange(data._id)}>
+            <p>{data.email}</p>
+            <p>{data.name}</p>
+            <p>{data.phone}</p>
+          </div>
+        </RadioButton>
 
-                      <div className="form-group">
-                          <label>Phone Number</label>
-                          <input  type="text"
-                                  className="form-control"
-                                //  value={this.state.todo_responsible}
-                                //  onChange={this.onChangeTodoResponsible}
-                                  />
-                      </div>
+      );
+    }
 
-                  </form>
-
-                  <button
-                    style={{
-                      width: "150px",
-                      borderRadius: "3px",
-                      letterSpacing: "1.5px",
-                      marginTop: "1rem"
-                    }}
-                    onClick={this.addContact}
-                    className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-                  >
-                    Add Contact
-                  </button>
-
-
-            <button
-              style={{
-                width: "150px",
-                borderRadius: "3px",
-                letterSpacing: "1.5px",
-                marginTop: "1rem"
-              }}
-              onClick={this.onLogoutClick}
-              className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-            >
-              Logout
-            </button>
-            </div>
-
-
-
-    );
-  }
+    render() {
+      return (
+        <div style={{marginTop: 20}}>
+        <SearchField
+          placeholder="Search..."
+          onChange={this.searchChange}
+          classNames="test-class"
+        />
+        <h3>Add New Contact</h3>
+        <form onSubmit={this.onSubmit}>
+          <div className="form-group">
+            <label>Name</label>
+            <input  type="text"
+                    className="form-control"
+                    id="name"
+                    value={this.state.todo_description}
+                    onChange={this.onChangeTodoDescription}
+            />
+          </div>
+          <div className="form-group">
+            <label>Email</label>
+            <input  type="text"
+                    id="email"
+                    className="form-control"
+                  //  value={this.state.todo_responsible}
+                  //  onChange={this.onChangeTodoResponsible}
+            />
+          </div>
+          <div className="form-group">
+            <label>Phone Number</label>
+            <input  type="text"
+                    id="phone"
+                    className="form-control"
+                  //  value={this.state.todo_responsible}
+                  //  onChange={this.onChangeTodoResponsible}
+            />
+          </div>
+        </form>
+        <RadioGroup horizontal>
+          {this.state.shownContacts.map(item =>
+            this.renderContactItem(item)
+          )}
+        </RadioGroup>
+          <button
+            style={{
+              width: "150px",
+              borderRadius: "3px",
+              letterSpacing: "1.5px",
+              marginTop: "1rem"
+            }}
+            onClick={this.addContact}
+            className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+          >
+            Add Contact
+          </button>
+          <button
+            style={{
+              width: "150px",
+              borderRadius: "3px",
+              letterSpacing: "1.5px",
+              marginTop: "1rem"
+            }}
+            onClick={this.onLogoutClick}
+            className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+          >
+            Logout
+          </button>
+          <button
+            style={{
+              width: "150px",
+              borderRadius: "3px",
+              letterSpacing: "1.5px",
+              marginTop: "1rem"
+            }}
+            onClick={this.deleteContact}
+            className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+          >
+            Delete
+          </button>
+          </div>
+        );
+      }
 }
 Dashboard.propTypes = {
   logoutUser: PropTypes.func.isRequired,
