@@ -14,7 +14,7 @@ class Navbar extends Component {
               }}
               className="col s5 brand-logo center white-text"
             >
-              Contact Manager system
+              Contact Manager
             </Link>
           </div>
         </nav>

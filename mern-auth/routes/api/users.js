@@ -94,7 +94,8 @@ router.post("/login", (req, res) => {
           (err, token) => {
             res.json({
               success: true,
-              token: "Bearer " + token
+              token: "Bearer " + token,
+              userId: user._id,
             });
           }
         );
@@ -106,6 +107,15 @@ router.post("/login", (req, res) => {
     });
   });
 });
+
+router.delete('/contacts/:id', (req, res, next) => {
+  Contact.findOne({_id: req.params.id}, (err, contacts) => {
+    if (err) return res.status(500).send("Error getting Contact")
+    if (!contacts) return res.status(404).send("Error finding Contact")
+      contacts.remove();
+      res.send("Deleted Contact")
+  })
+})
 
 router.post('/contacts', (req, res) => {
   Contact.create({
@@ -143,6 +153,10 @@ router.get('/', (req, res, next) => {
 };
 */
 
+router.get('/contacts/', (req, res, next) => {
+  console.log('WHATS UP?!');
+  res.status(200).send('my name is jonas');
+})
 
 router.get('/contacts/:id', (req, res, next) => {
   Contact.find({owner: req.params.id}, (err, contacts) => {

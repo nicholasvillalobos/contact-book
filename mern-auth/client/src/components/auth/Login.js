@@ -36,12 +36,15 @@ onChange = e => {
   };
 onSubmit = e => {
     e.preventDefault();
+
 const userData = {
       email: this.state.email,
       password: this.state.password
     };
+
 this.props.loginUser(userData); // since we handle the redirect within our component, we don't need to pass in this.props.history as a parameter
   };
+
 render() {
     const { errors } = this.state;
 return (
