@@ -1,0 +1,37 @@
+.form-group
+{
+  margin-left: 20px;
+  padding: 10 10 10px;
+}
+
+h3
+{
+  margin-left: 20px;
+  padding: 10 10 10px;
+}
+
+.test-class
+{
+  margin-top: 60px;
+  margin-left: 20px;
+  padding: 10 10 10px;
+  color: black;
+  background-color: darkgray;
+}
+
+p
+{
+  color: black;
+  margin-left: 20px;
+}
+
+button
+{
+  margin: 5px;
+  margin-left: 20px;
+  background-color: black;
+  width: 150px;
+  borderRadius: 3px;
+  letterSpacing: 1.5px;
+  marginTop: 1rem;
+}

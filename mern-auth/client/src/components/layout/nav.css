@@ -1,0 +1,19 @@
+.z-depth-2
+{
+  height: 80px;
+  background-color: linear-gradient(black, #414345);
+}
+
+.text
+{
+  font-size: 70px;
+  color: gold;
+  text-align: center;
+  margin-left: 320px;
+}
+
+.nav-wrapper
+{
+  background: linear-gradient(black, #414345);
+  color: #fff;
+}
