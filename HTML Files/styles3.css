@@ -1,0 +1,113 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    
+    background: url(backk.jpg);
+    background-size: cover;
+    background-position: center;
+    
+    font-family: inherit;
+    
+}
+
+
+.userbox
+{
+    width: 750px;
+    height: 520px;
+    background: linear-gradient(black, #414345);
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-shadow: 6px 13px 8px #444C54;
+    border: 1px solid black;
+    border-radius: 12px;
+    padding: 10px 10px 10px;
+}
+
+
+.userbox input
+{
+    width: 80%;
+    margin-left: 5px
+}
+
+.userbox input[type="text"], input[type="password"]
+{
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 22px;
+    color: #fff;
+    font-size: 12px;
+}
+
+
+.userbox input[type="submit"]:hover
+{
+    animation-fill-mode: forwards;
+    background: #CED5D9;
+}
+
+.userbox p
+{
+    margin: 15 0px;
+    padding: 5;
+    
+}
+
+.userbox button
+{
+    border: none;
+    width: 15%;
+    margin: 10 78 0;
+    outline: none;
+    height: 25px;
+    background: white;
+    color: black;
+    box-shadow:2px 3px 11px #CED5D9;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.userbox button:hover
+{
+    background: #CED5D9;
+}
+
+h1
+{
+    margin: 0;
+    padding: 0 0 0px;
+    text-align: center;
+    font-size: 24px;
+    color: #FFBF00;
+}
+
+h3
+{
+    margin: 0;
+    padding: 0 0 0px;
+    text-align: center;
+    font-size: 24px; 
+    color: #FFBF00;
+}
+
+.vertical
+{
+    float: left;
+    color: #FFBF00;
+    background: #FFBF00;
+    width: 2px;
+    height: 100%;
+}
+
+.AddSide
+{
+    margin-left: 5px;
+}
