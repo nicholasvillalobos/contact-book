@@ -68,7 +68,7 @@ class Dashboard extends Component {
   }
 
   searchChange = (str) => {
-    if (str == '') {
+    if (str === '') {
       this.setState((state, props) => {
         return { shownContacts: this.state.contacts };
       });
@@ -92,6 +92,7 @@ class Dashboard extends Component {
       .post("/api/users/contacts", data)
       .then(res => {
         // clear search bar here!
+        // and you should clear the form
         this.getContacts();
       }).catch(err =>
         console.log("error")
@@ -203,47 +204,47 @@ class Dashboard extends Component {
             />
           </div>
         </form>
-        <RadioGroup horizontal>
+        <button
+          style={{
+            width: "150px",
+            borderRadius: "3px",
+            letterSpacing: "1.5px",
+            marginTop: "1rem"
+          }}
+          onClick={this.addContact}
+          className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+        >
+          Add Contact
+        </button>
+        <button
+          style={{
+            width: "150px",
+            borderRadius: "3px",
+            letterSpacing: "1.5px",
+            marginTop: "1rem"
+          }}
+          onClick={this.onLogoutClick}
+          className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+        >
+          Logout
+        </button>
+        <button
+          style={{
+            width: "150px",
+            borderRadius: "3px",
+            letterSpacing: "1.5px",
+            marginTop: "1rem"
+          }}
+          onClick={this.deleteContact}
+          className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+        >
+          Delete
+        </button>
+        <RadioGroup>
           {this.state.shownContacts.map(item =>
             this.renderContactItem(item)
           )}
         </RadioGroup>
-          <button
-            style={{
-              width: "150px",
-              borderRadius: "3px",
-              letterSpacing: "1.5px",
-              marginTop: "1rem"
-            }}
-            onClick={this.addContact}
-            className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-          >
-            Add Contact
-          </button>
-          <button
-            style={{
-              width: "150px",
-              borderRadius: "3px",
-              letterSpacing: "1.5px",
-              marginTop: "1rem"
-            }}
-            onClick={this.onLogoutClick}
-            className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-          >
-            Logout
-          </button>
-          <button
-            style={{
-              width: "150px",
-              borderRadius: "3px",
-              letterSpacing: "1.5px",
-              marginTop: "1rem"
-            }}
-            onClick={this.deleteContact}
-            className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-          >
-            Delete
-          </button>
           </div>
         );
       }
